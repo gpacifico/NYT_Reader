@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Steven Matchiverse</title>
+        <title>NYT Reader</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
         <script src="script.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
+        <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
     </head>
     <body>
         <div id="container">
@@ -50,5 +51,9 @@
                 articlesDOMElement.appendChild(frag);
             }
         </script>
+=======
+        <h1>Welcome to the New York Times Reader!</h1>
+        <input onclick='responsiveVoice.speak("Hello World", "US English Female", {onstart: StartCallback, onend: EndCallback});' type='button' value='🔊 Play' />
+>>>>>>> master
     </body>
 </html>
