@@ -1,37 +1,41 @@
-* {
-  font-family: Montserrat;
+body {
+    font-size: 0;
+    margin: 0;
+    padding: 0;
 }
 
+body > * {
+    font-size: 1rem;
+
 li {
-  list-style: none;
+    list-style: none;
 }
 
 a {
-  text-decoration: none;
-  color: inherit;
+    text-decoration: none;
+    color: inherit;
 }
 
 a:hover {
-  color: purple;
-  text-decoration: underline;
-}
-
-body {
-  margin: 0;
-  padding: 0;
+    color: purple;
+    text-decoration: underline;
 }
 
 h1 {
     color: purple;
-    margin: 0;
+    font-family: "UnifrakturCook", serif;
+}
+
+p {
+    color: blue;
+    font-size: 2rem;
 }
 
 #container {
-  min-width: 300px;
-  width: 98%;
-  max-width: 1000px;
-  margin: auto;
-  padding: 0;
+    min-width: 300px;
+    width: 98%;
+    max-width: 1000px;
+    margin: auto;
 }
 
 .article-title {
@@ -41,5 +45,5 @@ h1 {
 
 .article-item {
   /* div item (entire thing) */
-  height: 50px;
+    height: 50px;
 }
