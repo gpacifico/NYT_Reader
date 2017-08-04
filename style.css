@@ -1,3 +1,31 @@
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  color: purple;
+  text-decoration: underline;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
 h1 {
     color: purple;
+    margin: 0;
+}
+
+#container {
+  min-width: 300px;
+  width: 100%;
+  max-width: 1000px;
+  margin: auto;
+  padding: 0;
 }
