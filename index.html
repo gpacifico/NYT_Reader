@@ -7,8 +7,10 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
         <script src="script.js"></script>
         <link rel="stylesheet" type="text/css" href="style.css">
+        <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
     </head>
     <body>
         <h1>Welcome to the New York Times Reader!</h1>
+        <input onclick='responsiveVoice.speak("Hello World", "US English Female", {onstart: StartCallback, onend: EndCallback});' type='button' value='🔊 Play' />
     </body>
 </html>
