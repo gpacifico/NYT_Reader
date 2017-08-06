@@ -1,20 +1,44 @@
 body {
     font-size: 0;
-    margin: 0;
-    padding: 0;
-    background: url("images/newspaper.jpg") no-repeat center;
-    background-size: cover, 100%;
-    text-align: center;
-    font-family: "Montserrat", serif;
 }
 
 body > * {
     font-size: 1rem;
 }
 
-.header {
-    height: 15%;
-    background-color: rgba(64,64,64,.9);
+
+body {
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+    /*background: url("images/newspaper.jpg") no-repeat center;*/
+    background-size: cover, 100%;
+/*  text-align: center;*/    
+    font-family: "Montserrat", serif;
+}
+
+header {
+    /* If you change the height, remember to change #container margin */
+    text-align: center;
+    height: 70px;
+    background-color: white;/*rgba(64,64,64,.9);*/
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    -webkit-box-shadow: 0px 1px 0px 0px rgba(211,211,211,.9);
+            box-shadow: 0px 1px 0px 0px rgba(211,211,211,.9);
+    position: fixed;
+    top: 0;
+}
+
+header h1 {
+    margin: 0;
+    padding: 0;
+}
+
+header h4 {
+    margin: 0 0 20px 0;
+    padding: 0;
 }
 
 li {
@@ -52,24 +76,42 @@ p {
     text-align: left;
 }
 
-h5 {
-    color: green;
-    font-size: 1.1rem;
+footer {
+    margin: 50px 0 25px 0;
 }
 
 #container {
     min-width: 300px;
     width: 98%;
-    /*max-width: 1000px;*/
-    margin: auto;
+    max-width: 1000px;
+    /* The 90px is the height of the header (80px) + 10px */
+    margin: 90px auto 0 auto;
 }
 
 .article-title {
-  /* h4 text */
+    margin: 0;
+    padding: 0;
+    /* h4 text */
     font-size: 1.3rem;
 }
 
 .article-item {
-  /* div item (entire thing) */
-    height: 50px;
+    /* div item (entire thing) */
+    margin: 30px 0;
+    /*height: 50px;
+    display: flex;
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-justify-content: center;
+            justify-content: center;*/
+}
+
+.article-description {
+    margin: 0.5em 0 0 0;
+    padding: 0;
+}
+
+.article-description {
+        color: green;
+        font-size: 1.1rem;
 }

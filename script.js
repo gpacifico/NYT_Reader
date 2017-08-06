@@ -33,9 +33,9 @@ function init() {
         articleTitles = sanitizeArticleTitles(articleTitles);
         articleURLs = getArticleURLsFromNYT(nyt);
         articleDescriptions = getArticleDescriptionsFromNYT(nyt);
-        displayArticleTitles(articleTitles,articleURLs);
-        speakArticleTitles(articleTitles, articleURLs);
-        displayArticleDescriptions(articleDescriptions);
+        displayArticleItems(articleTitles,articleURLs, articleDescriptions);
+        speakArticleTitles(articleTitles);
+        // displayArticleDescriptions(articleDescriptions);
         // speakDescriptions(articleDescriptions);
     });
 }
@@ -102,7 +102,7 @@ function displayArticleDescriptions(articleDescriptions) {
     }
 }
 
-// function displayArticleTitles(articleTitles) {
+// function displayArticleItems(articleTitles) {
 //     var articles = $('<h4>', {
 //         class:'article-item',
 //         html: articleTitles,
@@ -112,7 +112,7 @@ function displayArticleDescriptions(articleDescriptions) {
 //     }
 // }
 
-function displayArticleTitles(articleTitles, articleURLs) {
+function displayArticleItems(articleTitles, articleURLs, articleDescriptions) {
     // var articles = dummyData.articles;
     var articlesDOMElement = document.getElementById('articles');
 
@@ -121,7 +121,6 @@ function displayArticleTitles(articleTitles, articleURLs) {
 
     for (var i = 0; i < articleTitles.length; i++) {
         // articleTitles.push(articles[i].title);
-
         var div = document.createElement('div');
         div.className = "article-item";
 
@@ -141,11 +140,17 @@ function displayArticleTitles(articleTitles, articleURLs) {
         // var tn = document.createTextNode(text, describe);
         var tn = document.createTextNode(text);
 
+        var describe = $('<p>', {
+            class:'article-description',
+            html: articleDescriptions[i],
+        });
 
         a.appendChild(h4);
         h4.appendChild(tn);
         // h5.appendChild(tn);
         div.appendChild(a);
+        $(div).append(describe);
+
         frag.appendChild(div);
     }
 
@@ -173,6 +178,7 @@ function speakArticleTitles(articleTitles) {
     for (var j = 0; j < articleTitles.length; j++) {
         responsiveVoice.speak(articleTitles[j], "US English Female", {onstart: null, onend: null});
     }
+    console.log(articleTitles)
     return;
 }
 
