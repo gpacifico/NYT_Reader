@@ -28,11 +28,15 @@ function init() {
     nytPromise.then(function (nyt) {
         var articleTitles = [];
         var articleURLs = [];
+        var articleDescriptions = [];
         articleTitles = getArticleTitlesFromNYT(nyt);
         articleTitles = sanitizeArticleTitles(articleTitles);
         articleURLs = getArticleURLsFromNYT(nyt);
+        articleDescriptions = getArticleDescriptionsFromNYT(nyt);
         displayArticleTitles(articleTitles,articleURLs);
         speakArticleTitles(articleTitles, articleURLs);
+        displayArticleDescriptions(articleDescriptions);
+        // speakDescriptions(articleDescriptions);
     });
 }
 
@@ -44,7 +48,8 @@ function getNYT() {
             data: {
                 api_key: '3788190a07ca43fdaf2083bef6b256d2'
             },
-            url: "https://newsapi.org/v1/articles?source=the-new-york-times&sortBy=top&apiKey=3788190a07ca43fdaf2083bef6b256d2",
+            // url: "https://newsapi.org/v1/articles?source=the-new-york-times&sortBy=top&apiKey=3788190a07ca43fdaf2083bef6b256d2",
+            url: "https://newsapi.org/v1/articles?source=associated-press&sortBy=top&apiKey=3788190a07ca43fdaf2083bef6b256d2",
             success: function(nyt) {
                 res(nyt);
             }
@@ -79,6 +84,34 @@ function getArticleURLsFromNYT(nyt) {
     return articleURLs;
 }
 
+function getArticleDescriptionsFromNYT(nyt) {
+    var articleDescriptions = [];
+    for (var i = 0; i < nyt.articles.length; i++) {
+        articleDescriptions.push(nyt.articles[i].description);
+    }
+    return articleDescriptions;
+}
+
+function displayArticleDescriptions(articleDescriptions) {
+    var describe = $('<h5>', {
+        class:'descr',
+        html: articleDescriptions,
+    });
+    for(var g = 0; g < articleDescriptions.length; g++) {
+        $('#description').append(describe);
+    }
+}
+
+// function displayArticleTitles(articleTitles) {
+//     var articles = $('<h4>', {
+//         class:'article-item',
+//         html: articleTitles,
+//     });
+//     for (var a = 0; a < articleTitles.length; a++) {
+//         $('#articles').append(articles);
+//     }
+// }
+
 function displayArticleTitles(articleTitles, articleURLs) {
     // var articles = dummyData.articles;
     var articlesDOMElement = document.getElementById('articles');
@@ -99,12 +132,19 @@ function displayArticleTitles(articleTitles, articleURLs) {
         var h4 = document.createElement('h4');
         h4.className = "article-title";
 
+        // var h5 = document.createElement('h5');
+        // h5.className = "article-description";
+
         var text = articleTitles[i];
         // text = sanitizeText(text);
+        // var describe = articleDescriptions[i];
+        // var tn = document.createTextNode(text, describe);
         var tn = document.createTextNode(text);
+
 
         a.appendChild(h4);
         h4.appendChild(tn);
+        // h5.appendChild(tn);
         div.appendChild(a);
         frag.appendChild(div);
     }
@@ -135,3 +175,11 @@ function speakArticleTitles(articleTitles) {
     }
     return;
 }
+
+// function speakDescriptions(articleDescriptions) {
+//     // We lucked out, this automatically runs synchronously, convenient!
+//     for (var k = 0; k < articleDescriptions.length; k++) {
+//         responsiveVoice.speak(articleDescriptions[k], "US English Female", {onstart: null, onend: null});
+//     }
+//     return;
+// }
