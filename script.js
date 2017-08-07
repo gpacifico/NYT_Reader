@@ -29,12 +29,14 @@ function init() {
         var articleTitles = [];
         var articleURLs = [];
         var articleDescriptions = [];
+        var articleImages = [];
         articleTitles = getArticleTitlesFromNYT(nyt);
         articleTitles = sanitizeArticleTitles(articleTitles);
         articleURLs = getArticleURLsFromNYT(nyt);
         articleDescriptions = getArticleDescriptionsFromNYT(nyt);
-        displayArticleItems(articleTitles,articleURLs, articleDescriptions);
-        speakArticleTitles(articleTitles);
+        articleImages = getArticleImagesFromNYT(nyt);
+        displayArticleItems(articleTitles,articleURLs, articleDescriptions, articleImages);
+        speakArticleTitles(articleTitles, articleDescriptions);
         // displayArticleDescriptions(articleDescriptions);
         // speakDescriptions(articleDescriptions);
     });
@@ -84,12 +86,21 @@ function getArticleURLsFromNYT(nyt) {
     return articleURLs;
 }
 
+
 function getArticleDescriptionsFromNYT(nyt) {
     var articleDescriptions = [];
     for (var i = 0; i < nyt.articles.length; i++) {
         articleDescriptions.push(nyt.articles[i].description);
     }
     return articleDescriptions;
+}
+
+function getArticleImagesFromNYT(nyt) {
+    var articleImages = [];
+    for (var i = 0; i < nyt.articles.length; i++) {
+        articleImages.push(nyt.articles[i].urlToImage);
+    }
+    return articleImages;
 }
 
 function displayArticleDescriptions(articleDescriptions) {
@@ -112,7 +123,7 @@ function displayArticleDescriptions(articleDescriptions) {
 //     }
 // }
 
-function displayArticleItems(articleTitles, articleURLs, articleDescriptions) {
+function displayArticleItems(articleTitles, articleURLs, articleDescriptions, articleImages) {
     // var articles = dummyData.articles;
     var articlesDOMElement = document.getElementById('articles');
 
@@ -145,11 +156,30 @@ function displayArticleItems(articleTitles, articleURLs, articleDescriptions) {
             html: articleDescriptions[i],
         });
 
+        var pics = $('<img>', {
+            class:'article-image',
+            src: articleImages[i],
+        });
+
+        var articleText = $('<div>', {
+            class: 'article-text',
+            });
+
+        var picDiv = $('<div>', {
+            class: 'article-image-div',
+        });
+
+        // $(div).append(pics);
+        picDiv.append(pics);
         a.appendChild(h4);
         h4.appendChild(tn);
+        articleText.append(a);
         // h5.appendChild(tn);
-        div.appendChild(a);
-        $(div).append(describe);
+        // div.appendChild(a);
+        // $(div).append(describe);
+        articleText.append(describe);
+        $(div).append(picDiv);
+        $(div).append(articleText);
 
         frag.appendChild(div);
     }
@@ -173,10 +203,11 @@ function sanitizeText(text) {
     return text;
 }
 
-function speakArticleTitles(articleTitles) {
+function speakArticleTitles(articleTitles, articleDescriptions) {
     // We lucked out, this automatically runs synchronously, convenient!
     for (var j = 0; j < articleTitles.length; j++) {
         responsiveVoice.speak(articleTitles[j], "US English Female", {onstart: null, onend: null});
+        responsiveVoice.speak(articleDescriptions[j], "US English Female", {onstart: null, onend: null});
     }
     console.log(articleTitles)
     return;
