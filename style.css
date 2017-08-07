@@ -1,32 +1,21 @@
 body {
     font-size: 0;
+    margin: 0;
+    padding: 0;
+    background-size: cover, 100%;
+    font-family: "Montserrat", serif;
 }
 
 body > * {
     font-size: 1rem;
 }
 
-
-body {
-    font-size: 0;
-    margin: 0;
-    padding: 0;
-    /*background: url("images/newspaper.jpg") no-repeat center;*/
-    background-size: cover, 100%;
-/*  text-align: center;*/    
-    font-family: "Montserrat", serif;
-}
-
 header {
     /* If you change the height, remember to change #container margin */
     text-align: center;
     height: 70px;
-    background-color: white;/*rgba(64,64,64,.9);*/
+    background-color: rgba(96,96,96,.9);
     width: 100%;
-    margin: 0;
-    padding: 0;
-    -webkit-box-shadow: 0px 1px 0px 0px rgba(211,211,211,.9);
-            box-shadow: 0px 1px 0px 0px rgba(211,211,211,.9);
     position: fixed;
     top: 0;
 }
@@ -51,14 +40,13 @@ a {
 }
 
 a:hover {
-    color: red;
+    color: rgb(255,0,0);
     text-decoration: underline;
 }
 
 h1 {
     color: #000;
     font-weight: 700;
-    background-color: #fff;
     display: inline-block;
     padding: 1%;
     text-decoration: underline;
@@ -66,18 +54,15 @@ h1 {
 }
 
 h2 {
-    color: #fff;
     margin-top: 0;
 }
 
-p {
-    color: red;
-    font-size: 1.4rem;
-    text-align: left;
+h2, #footer-container {
+    color: #fff;
 }
 
 footer {
-    background-color: black;
+    background-color: #000;
     margin: 0;
     padding: 50px 0 50px 0;
     width: 100%;
@@ -88,7 +73,6 @@ footer {
     width: 100%;
     max-width: 1000px;
     margin: auto;
-    color: white;
     display: flex;
     -webkit-justify-content: space-between;
             justify-content: space-between;
@@ -115,27 +99,43 @@ footer {
 
 .article-item {
     /* div item (entire thing) */
-    margin: 30px 0;
-    /*height: 50px;
+    margin: 30px 10px;
     display: flex;
     -webkit-align-items: center;
-            align-items: center;
-    -webkit-justify-content: center;
-            justify-content: center;*/
+    align-items: center;
 }
 
 .article-description {
     margin: 0.5em 0 0 0;
     padding: 0;
+    color: rgb(128,128,128);
+    font-size: 1.1rem;
 }
 
-.article-description {
-        color: grey;
-        font-size: 1.1rem;
+.article-item img {
+    width: 300px;
+    height: auto;
+}
+
+.article-image-div {
+    margin-right: 10px;
+}
+
+#api_attr {
+    width:300px;
+    vertical-align:top;
+    font-family: Arial, serif;
+    font-size:9pt;
+    line-height: normal;
+}
+
+#api_license {
+    float:left;
+    padding-right:2px
 }
 
 @media (max-width: 750px) {
-    #footer-container {
+    #footer-container, .article-item {
         flex-direction: column;
         align-items: center;
     }
